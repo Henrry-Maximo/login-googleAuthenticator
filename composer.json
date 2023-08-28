@@ -1,0 +1,7 @@
+{
+    "require": {
+        "php": ">=7.0",
+        "monolog/monolog": "^1.0",
+        "vendor/package": "1.3.*"
+    }
+}
