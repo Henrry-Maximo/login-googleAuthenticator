@@ -69,7 +69,7 @@ $conn->close();
 
 <body>
     <div class="container-form-authenticate">
-        <div class="qrcode-container">
+        <div class="container-form-qr">
             <p class=" qrcode-unavailable"><?php echo "$aviso"; ?>
                 <img src="<?php
                             if ($user_type == 1) {
@@ -94,9 +94,9 @@ $conn->close();
     </div>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector(".qrcode-container").classList.add("animate-slide");
-    });
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".qrcode-container").classList.add("animate-slide");
+        });
     </script>
 </body>
 
