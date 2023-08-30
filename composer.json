@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "vendor/package",
     "description": "A short description of what your package does",
     "require": {
@@ -10,3 +11,11 @@
     },
     "minimum-stability": "stable"
 }
+=======
+    "require": {
+        "php": ">=7.0",
+        "monolog/monolog": "^1.0",
+        "vendor/package": "1.3.*"
+    }
+}
+>>>>>>> 49b805e47a591624e7f94d6df867af5590dc3caa
