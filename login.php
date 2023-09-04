@@ -2,10 +2,11 @@
 session_start();
 
 include 'config/db.php';
-include 'googleAuthenticator/PHPGangsta_GoogleAuthenticator.php';
 
+include 'googleAuthenticator/PHPGangsta_GoogleAuthenticator.php';
 $ga = new PHPGangsta_GoogleAuthenticator();
 
+// Verificar se a solicitação HTTP é do tipo POST.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
@@ -27,15 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["authenticated_user"] = $user_id;
         $_SESSION["name_user"] = $user_name;
 
-        // só irá atualizar se $user_type for diferente de zero
-        // permissão para o usuário novo visualizar o qrcode
+        // Atualizar para '1' somente se $user_type for diferente de zero ou vazio.
+        // Permissão para o usuário novo visualizar o qrcode.
         if ($user_type != 0 || $user_type == '') {
             $updateQuery = "UPDATE users SET type = '1' WHERE id = $user_id";
             $conn->query($updateQuery);
         }
 
-        // só irá atualizar se $user_secret estiver vazio no bd
-        // cadastro da secret
+        // Atualizar somente se $user_secret estiver vazio.
+        // Cadastro único da secret no banco de dados.
         if (empty($user_secret)) {
             $user_secret = $ga->createSecret();
 
@@ -44,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Redirecionar para a página de autenticação com o QR Code
-        header("Location: authenticate.php"); // Você pode passar informações aqui se necessário
+        header("Location: authenticate.php");
         exit();
     } else {
         $error_message = "Usuário ou senha inválidos.";
